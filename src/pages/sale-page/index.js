@@ -14,7 +14,7 @@ export const SalePage = () => {
         setStartSaleStatus((prev) => !prev);
     }
     return (
-        <div>
+        <div className={styles.wrapper}>
             {toggleSaleStatus && 
                 <Flash startSaleStatus = {startSaleStatus}>
                     <SaleText/>

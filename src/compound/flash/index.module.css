@@ -1,5 +1,6 @@
 .show{
     border: 3px solid red;
+    border-radius: 5%;
 }
 .hiden{
     border: 0;
