@@ -4,21 +4,24 @@ import styles from "./index.module.css";
 
 
 export const Flash = ({children, startSaleStatus}) => {
-    const [alarmVisibleStatus,setAlarmVisibleStatus] = useState(styles.hiden);
+    const [alarmVisibleStatus,setAlarmVisibleStatus] = useState(false);
         useEffect(() => {
-            const flashingInterval = setInterval(() => {
-                setAlarmVisibleStatus(styles.show)
-                const flashingIntervalHide = setTimeout(() => {
-                    setAlarmVisibleStatus(styles.hide);
-                },500)
-            }, 1000);
+            let flashingInterval;
+            if(alarmVisibleStatus){
+                flashingInterval = setInterval(() => {
+                    setAlarmVisibleStatus((alarmVisibleStatus) => !alarmVisibleStatus);
+                }, 500);
+            }
             return() => {
                 clearInterval(flashingInterval);
             }
-        }
-        )
-    return (<div className={startSaleStatus && alarmVisibleStatus}>
-            {children}
-        </div>
+        },[alarmVisibleStatus]);
+    return (
+        <>
+            <div className={startSaleStatus && styles.show}>
+                {children}
+            </div>
+        </>
+        
     );
 }
